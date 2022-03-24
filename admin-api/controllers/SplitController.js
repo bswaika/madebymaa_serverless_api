@@ -1,8 +1,8 @@
 const { Split, Seller } = require('../models');
 const https = require('https');
 
-const key = 'rzp_live_6h5Rblu4N2LrBA'
-const secret = 'kRwTXwMhVIPCo07FGxGVAYyh'
+const key = 'some_key'
+const secret = 'some_secret'
 
 const API_URL = `https://${key}:${secret}@api.razorpay.com/v1/payments`
 
