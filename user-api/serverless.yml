@@ -1,0 +1,29 @@
+service: user-api
+app: mbm-backend
+org: madebymaa
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: prod
+  region: ap-south-1
+  profile: madebymaa-prod
+  environment: 
+    DB: "mongodb+srv://username:password@cluster0.random.mongodb.net/prod?retryWrites=true&w=majority"
+
+
+functions:
+  api:
+    handler: handler.router
+    timeout: 30
+    events:
+      - http:
+          path: 'api/v1/users/'
+          method: any
+          cors: true
+      - http:
+          path: 'api/v1/users/{proxy+}'
+          method: any
+          cors: true

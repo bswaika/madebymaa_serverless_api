@@ -1,0 +1,48 @@
+service: order-api
+app: mbm-backend
+org: madebymaa
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: prod
+  region: ap-south-1
+  profile: madebymaa-prod
+  environment: 
+    DB: "mongodb+srv://username:password@cluster0.random.mongodb.net/prod?retryWrites=true&w=majority"
+    ADMIN_APP_DOMAIN: "https://dashboard.madebymaa.in"
+
+
+functions:
+  api:
+    handler: handler.router
+    timeout: 30
+    events:
+      - http:
+          path: 'api/v1/orders/'
+          method: any
+          cors: true
+      - http:
+          path: 'api/v1/orders/{proxy+}'
+          method: any
+          cors: true
+  COINPBUScheduler:
+    handler: handler.COINPBUScheduler
+    events: 
+      - schedule:
+          rate: rate(5 minutes)
+          enabled: true
+  COINABKScheduler:
+    handler: handler.COINABKScheduler
+    events: 
+      - schedule:
+          rate: rate(3 minutes)
+          enabled: true
+  SORIDScheduler:
+    handler: handler.SORIDScheduler
+    events: 
+      - schedule:
+          rate: rate(15 minutes)
+          enabled: true

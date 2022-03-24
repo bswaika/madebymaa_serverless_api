@@ -1,0 +1,20 @@
+{
+    "name": "admin-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "handler.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "firebase-admin": "^9.4.2",
+        "lambda-api": "^0.10.6",
+        "mongoose": "^5.11.8"
+    },
+    "devDependencies": {
+        "aws-sdk": "^2.771.0",
+        "serverless-offline": "^6.8.0"
+    }
+}
