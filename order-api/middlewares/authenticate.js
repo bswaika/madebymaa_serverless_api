@@ -23,11 +23,11 @@ const authenticate = async(req, res, next) => {
                     resource = await Partner.findOne({ firebaseID: req.uid, verifiedStatus: true }).select('name firebaseID phone').lean(); // Need to add verifiedStatus : true in findOne() to block access 
                     break;
                 case 'admin':
-                    const adminToken = 'H7Z8Wc0d2Vf0sk2g4cRPTFjUMsp1';
+                    const adminToken = 'some token';
                     if (req.uid == adminToken)
                         resource = {
                             name: 'Admin',
-                            firebaseID: 'H7Z8Wc0d2Vf0sk2g4cRPTFjUMsp1'
+                            firebaseID: 'some token'
                         };
                     break;
                 default:
